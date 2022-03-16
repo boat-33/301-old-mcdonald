@@ -4,6 +4,8 @@ import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
 
+from dash import Output, Input
+
 ########### Define your variables ######
 
 # here's the list of possible columns to choose from.
@@ -61,6 +63,28 @@ app.layout = html.Div(children=[
     html.A("Data Source", href=sourceurl),
     ]
 )
+
+############ Define callback as in project 3
+@app.callback(Output('agriculture-dd-container', 'figure'), Input('agriculture-dd', 'value'))
+def update_output(value):
+    fig = go.Figure(data=go.Choropleth(
+    locations=df['code'], # Spatial coordinates
+    z = df[value].astype(float), # Data to be color-coded
+    locationmode = 'USA-states', # set of locations match entries in `locations`
+    colorscale = mycolorscale,
+    colorbar_title = mycolorbartitle,
+    ))
+
+    mygraphtitle=f"Selected: {value}"
+    
+    fig.update_layout(
+        geo_scope='usa',
+        title=mygraphtitle,
+        width=1200,
+        height=800
+    )
+    
+    return fig
 
 ############ Deploy
 if __name__ == '__main__':
