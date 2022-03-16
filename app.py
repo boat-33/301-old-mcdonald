@@ -14,11 +14,11 @@ list_of_columns =['total exports', 'beef', 'pork', 'poultry',
        'veggies proc', 'total veggies', 'corn', 'wheat', 'cotton']
 
 mycolumn='corn'
-myheading1 = f"Wow! That's a lot of {mycolumn}!"
+myheading1 = 'US Agricultural Data'
 mygraphtitle = '2011 US Agriculture Exports by State'
 mycolorscale = 'ylorrd' # Note: The error message will list possible color scales.
 mycolorbartitle = "Millions USD"
-tabtitle = 'Old McDonald'
+tabtitle = 'Farming Exports'
 sourceurl = 'https://plot.ly/python/choropleth-maps/'
 githublink = 'https://github.com/austinlasseter/dash-map-usa-agriculture'
 
