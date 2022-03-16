@@ -7,7 +7,7 @@ import pandas as pd
 ########### Define your variables ######
 
 # here's the list of possible columns to choose from.
-list_of_columns =['code', 'state', 'category', 'total exports', 'beef', 'pork', 'poultry',
+list_of_columns =['total exports', 'beef', 'pork', 'poultry',
        'dairy', 'fruits fresh', 'fruits proc', 'total fruits', 'veggies fresh',
        'veggies proc', 'total veggies', 'corn', 'wheat', 'cotton']
 
@@ -48,13 +48,14 @@ server = app.server
 app.title=tabtitle
 
 ########### Set up the layout
+dropdown=[]
+for i in list(list_of_columns):
+    dropdown.append({"label": i, "value": i})
 
 app.layout = html.Div(children=[
     html.H1(myheading1),
-    dcc.Graph(
-        id='figure-1',
-        figure=fig
-    ),
+    html.Div([dcc.Dropdown(dropdown, value='total exports', id='agriculture-dd')]),
+    html.Div([dcc.Graph(id='agriculture-dd-container')]),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A("Data Source", href=sourceurl),
