@@ -33,12 +33,33 @@ fig = go.Figure(data=go.Choropleth(
     colorscale = mycolorscale,
     colorbar_title = mycolorbartitle,
 ))
-
+buttons = []
+for col in df.columns:
+    buttons.append(
+        dict(
+            method='restyle',
+            label=col,
+            visible=True,
+            args=[{'y':[df[col]],'x':[df.index]},[0]],
+        )
+    )
 fig.update_layout(
-    title_text = mygraphtitle,
+    title_text=mygraphtitle,
     geo_scope='usa',
     width=1200,
-    height=800
+    height=800,
+    updatemenus=[
+        dict(
+            buttons=buttons,
+            direction="down",
+            pad={"r": 10, "t": 10},
+            showactive=True,
+            x=0.1,
+            xanchor="left",
+            y=1.1,
+            yanchor="top"
+        ),
+    ]
 )
 
 ########### Initiate the app
