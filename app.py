@@ -1,10 +1,8 @@
 from turtle import title
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
-from dash import Input, Output
+from dash import html, Input, Output, dcc
 
 ########### Define your variables ######
 
@@ -78,13 +76,10 @@ def update_output(value):
     colorbar_title = mycolorbartitle,
     ))
 
-    fig.update_geos(
-        scope='usa'
-    )
-
     mygraphtitle=f"Selected: {value}"
     
     fig.update_layout(
+        geo_scope='usa',
         title=mygraphtitle,
         width=1200,
         height=800
